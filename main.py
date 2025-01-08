@@ -14,14 +14,10 @@ dp = Dispatcher()
 @dp.message(Command('start'))
 async def start_handler(message: types.Message):
     name = message.from_user.first_name
-    keyboard = InlineKeyboardMarkup(inline_keyboard=[
-        [InlineKeyboardButton(text='Начать работу с ботом', callback_data='start')],
-        [InlineKeyboardButton(text='Случайное имя', callback_data='random')],
-        [InlineKeyboardButton(text='Информация о себе', callback_data='myinfo')]
-    ])
+
 
     await message.answer(f'Привет {name}\n'
-                         f'Мои комманды:', reply_markup=keyboard)
+                         f'Мои комманды:')
 
 
 @dp.message(Command('random'))
