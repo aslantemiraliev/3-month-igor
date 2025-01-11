@@ -1,42 +1,18 @@
-from aiogram import Bot, Dispatcher, types
-from aiogram.filters import Command
-from dotenv import dotenv_values
-import logging
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from random import choice
 import asyncio
-
-token = dotenv_values('.env')['TOKEN']
-bot = Bot(token=token)
-dp = Dispatcher()
+from bot_config import bot,dp
+from handlers import (myinfo,random,start)
 
 
-@dp.message(Command('start'))
-async def start_handler(message: types.Message):
-    name = message.from_user.first_name
 
 
-    await message.answer(f'Привет {name}\n'
-                         f'Мои комманды:')
 
 
-@dp.message(Command('random'))
-async def random_handler(message: types.Message):
-    name_list = choice(['Jim', 'Jessie', 'Aisuluu', 'Jasmina', 'Suga'])
-    await message.answer(f'Случайное имя: {name_list}')
-
-
-@dp.message(Command('myinfo'))
-async def myinfo_handler(message: types.Message):
-    id = message.from_user.id
-    name = message.from_user.first_name
-    nickname = message.from_user.username
-    await message.answer(f'Ваше имя: {name}'
-                         f'Ваш nickname:{nickname}'
-                         f'Ваш id {id}')
 
 
 async def main():
+    dp.include_router(myinfo.myinfo_router)
+    dp.include_router(random.random_router)
+    dp.include_router(start.start_router)
     await dp.start_polling(bot)
 
 
