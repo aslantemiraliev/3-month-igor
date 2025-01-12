@@ -1,10 +1,8 @@
 from aiogram import Bot, Dispatcher, Router
-from aiogram. filters import Command
+from aiogram.filters import Command
 from aiogram import types
 
-
 myinfo_router = Router()
-
 
 
 @myinfo_router.message(Command('myinfo'))

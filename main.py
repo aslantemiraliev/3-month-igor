@@ -1,12 +1,6 @@
 import asyncio
-from bot_config import bot,dp
-from handlers import (myinfo,random,start)
-
-
-
-
-
-
+from bot_config import bot, dp
+from handlers import (myinfo, random, start)
 
 
 async def main():
