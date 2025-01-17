@@ -7,7 +7,8 @@ start_router = Router()
 
 kb = types.InlineKeyboardMarkup(inline_keyboard=[
     [types.InlineKeyboardButton(text='Review', callback_data='review')],
-    [types.InlineKeyboardButton(text='Advertising', callback_data='advertising')]
+    [types.InlineKeyboardButton(text='Advertising', callback_data='advertising')],
+    [types.InlineKeyboardButton(text='Catalog of dishes', callback_data='catalog of dishes')]
 ])
 
 
