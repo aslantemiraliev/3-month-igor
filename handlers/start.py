@@ -5,13 +5,13 @@ from aiogram.types import InlineKeyboardMarkup
 
 start_router = Router()
 
-
-kb: InlineKeyboardMarkup = types.InlineKeyboardMarkup(inline_keyboard=[
-    [types.InlineKeyboardButton(text='Review',callback_data='review')]
+kb = types.InlineKeyboardMarkup(inline_keyboard=[
+    [types.InlineKeyboardButton(text='Review', callback_data='review')],
+    [types.InlineKeyboardButton(text='Advertising', callback_data='advertising')]
 ])
 
 
 @start_router.message(Command('start'))
 async def start_handler(message: types.Message):
     name = message.from_user.first_name
-    await message.answer(f'Привет {name}',reply_markup=kb)
+    await message.answer(f'Привет {name}', reply_markup=kb)
