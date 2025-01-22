@@ -7,7 +7,8 @@ from aiogram import F
 from bot_config import db
 
 dish_router = Router()
-
+dish_router.message.filter(
+    F.from_user.id==1492976935
 )
 
 class Dish(StatesGroup):
