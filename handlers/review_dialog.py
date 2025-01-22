@@ -4,6 +4,7 @@ from aiogram import types
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram import F
+from bot_config import db
 
 review_router = Router()
 
@@ -54,4 +55,5 @@ async def process_name(m: types.Message, state: FSMContext):
     data = await state.get_data()
     await m.answer(
         f'name:{data["name"]}\ninsagram:{data["instagram_username"]}\nrate:{data["rate"]}\nextra_comments:{data["extra"]}')
+    db.save_review(data)
     await state.clear()
