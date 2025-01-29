@@ -41,3 +41,11 @@ class Database:
                         INSERT INTO dish (name,price,description,cat,portion) VALUES(?, ?, ?, ?, ?,)
                          ''',
                          (data['name'],data['price'],data['description'],data['cat'],data['portion']))
+
+    def get_all_dish(self):
+        with sqlite3.connect(self.path) as conn:
+            cursor = conn.cursor()
+            result = conn.execute("SELECT * FROM dish")
+            result.row_factory = sqlite3.Row
+            data = result.fetchall()
+            return [dict(row) for row in data]

@@ -8,8 +8,16 @@ from bot_config import db
 
 dish_router = Router()
 dish_router.message.filter(
-    F.from_user.id==1492976935
+    F.from_user.id == 1492976935
 )
+
+
+@dish_router.message(Command('get_dish'))
+async def get_dishes(message):
+    data = db.get_all_dish()
+    for i in data:
+        await message.answer(str(i))
+
 
 class Dish(StatesGroup):
     name = State()
@@ -47,11 +55,10 @@ async def process_description(m: types.Message, state: FSMContext):
 
 
 @dish_router.message(Dish.category)
-async def process_category(m,state):
+async def process_category(m, state):
     await state.update_data(cat=m.text)
     await m.answer("what is the porsion")
     await state.set_state(Dish.porsion)
-
 
 
 @dish_router.message(Dish.porsion)
